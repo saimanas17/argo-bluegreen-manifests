@@ -1,0 +1,13 @@
+# Secrets - NEVER commit plain secrets
+redis-secret.yaml
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
