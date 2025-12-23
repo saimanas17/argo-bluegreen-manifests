@@ -5,5 +5,5 @@ metadata:
   namespace: bluegreen-demo
 data:
   ENVIRONMENT: "dev"
-  BUILD_NUMBER: "7"
+  BUILD_NUMBER: "9"
   NAMESPACE: "bluegreen-demo"
