@@ -18,7 +18,7 @@ spec:
       serviceAccountName: bluegreen-backend-sa
       containers:
       - name: backend
-        image: saimanasg/bluegreen-backend:10
+        image: saimanasg/bluegreen-backend:11
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
