@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: saimanasg/bg-demo-frontend:test  # Change this
+        image: saimanasg/bluegreen-frontend:4
         imagePullPolicy: Always
         ports:
         - containerPort: 80
