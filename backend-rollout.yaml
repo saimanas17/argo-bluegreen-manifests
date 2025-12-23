@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: saimanasg/bluegreen-backend:6
+        image: saimanasg/bluegreen-backend:7
         ports:
         - name: http
           containerPort: 5000
