@@ -1,30 +1,26 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
-  name: nginx-green
+  name: frontend-rollout
   namespace: bluegreen-demo
-  labels:
-    app: nginx-bluegreen
-    version: green
 spec:
   replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: nginx-bluegreen
-      version: green
   template:
     metadata:
       labels:
         app: nginx-bluegreen
-        version: green
     spec:
       containers:
       - name: nginx
-        image: saimanasg/bg-demo-frontend:test  # Change this
-        imagePullPolicy: Always
+        image: saimanasg/bluegreen-frontend:1
         ports:
-        - containerPort: 80
-          name: http
+        - name: http
+          containerPort: 80
+          protocol: TCP
         resources:
           requests:
             memory: "64Mi"
@@ -44,3 +40,9 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
+  strategy:
+    blueGreen:
+      activeService: frontend-service-active
+      previewService: frontend-service-preview
+      autoPromotionEnabled: false  
+      scaleDownDelaySeconds: 30
