@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: saimanasg/bluegreen-frontend:30
+        image: saimanasg/bluegreen-frontend:31
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
