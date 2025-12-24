@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: bluegreen-frontend
+  namespace: bluegreen-demo
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: bluegreen-frontend
+  template:
+    metadata:
+      labels:
+        app: bluegreen-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: bluegreen-frontend:1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+  strategy:
+    blueGreen:
+      # Service that the rollout modifies as the active service
+      activeService: bluegreen-frontend-active
+      # Service that the rollout modifies as the preview service
+      previewService: bluegreen-frontend-preview
+      # Automatically promote the new version after 30 seconds
+      autoPromotionEnabled: false
+      # Optional: Enable this for automatic promotion
+      # autoPromotionSeconds: 30

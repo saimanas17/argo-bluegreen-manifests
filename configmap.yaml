@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: bluegreen-config
-  namespace: bluegreen-demo
-data:
-  ENVIRONMENT: "dev"
-  BUILD_NUMBER: "14"
-  NAMESPACE: "bluegreen-demo"
