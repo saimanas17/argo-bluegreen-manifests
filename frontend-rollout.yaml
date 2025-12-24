@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: saimanasg/bluegreen-frontend:13
+        image: saimanasg/bluegreen-frontend:14
         imagePullPolicy: Always
         ports:
         - name: http
